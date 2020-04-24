@@ -7,23 +7,42 @@ import apiKey from './config';
 
 class App extends Component {
   state = {
-    api: []
+    photos: []
   };
 
+  // when DOM is rendered, call API with axios and update photos state to data received; setting default tag to cats
+
   componentDidMount() {
-    const URL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=sunsets.&per_page=&format=json&nojsoncallback=1`;
+    const defaultTag = 'cats';
+    const URL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${defaultTag}&per_page=24&format=json&nojsoncallback=1`;
 
     axios.get(URL)
-      .then(response => 
-        console.log(response.data))
+      .then(response => (
+        this.setState({ 
+          photos: response.data.photos.photo
+        })
+      ))
       .catch(error => console.log(error));
   }
 
+  // function to fetch new API with tag from search form and update photos state
+  updatePhotos = (tag) => {
+    const URL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`;
+    axios.get(URL)
+      .then(response => (
+        this.setState({ 
+          photos: response.data.photos.photo
+        })
+      ))
+      .catch(error => console.log(error));
+  };
+
+  // render Nav and route of current URL
   render() {
       return( 
           <BrowserRouter>
-            <Nav />
-            <Router />
+            <Nav updatePhotos={ this.updatePhotos }/>
+            <Router photos={ this.state.photos }/>
           </BrowserRouter>
       );
   }

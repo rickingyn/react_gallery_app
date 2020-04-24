@@ -3,17 +3,17 @@ import { NavLink } from 'react-router-dom'
 import SearchForm from './SearchForm';
 import '../css/index.css';
 
-const Nav = () => {
+const Nav = (props) => {
     return(
         <div>
-            <SearchForm />
+            <SearchForm updatePhotos={ props.updatePhotos }/>
 
             {/* Nav Links */}
             <nav className='main-nav'>
                 <ul>
-                    <li><NavLink exact to='/'>Cats</NavLink></li>
-                    <li><NavLink exact to='/'>Dogs</NavLink></li>
-                    <li><NavLink exact to='/'>Computers</NavLink></li>
+                    <li><NavLink exact to='/cats'>Cats</NavLink></li>
+                    <li><NavLink exact to='/dogs'>Dogs</NavLink></li>
+                    <li><NavLink exact to='/computers'>Computers</NavLink></li>
                 </ul>
 
             </nav>

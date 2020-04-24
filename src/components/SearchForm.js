@@ -3,17 +3,20 @@ import '../css/index.css';
 
 class SearchForm extends Component {
     state = {
-        searchInput: ''
+        tag: ''
     };
 
+    // set state to current value of input field
     handleUpdate = (event) => {
         this.setState({
-            searchInput: event.target.value
+            tag: event.target.value
         });
     };
 
-    handleSubmit = () => {
-        // call search function from parent to search
+    // prevent page refresh and call function from parent, passing tag as parameter to update URL
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.updatePhotos(this.state.tag);
     };
 
     render() {
@@ -21,7 +24,7 @@ class SearchForm extends Component {
             <div>
                 {/* Search field */}
                 <form className='search-form' onSubmit={ this.handleSubmit } >
-                    <input type='search' value={ this.state.searchInput } onChange={ this.handleUpdate} />
+                    <input type='search' value={ this.state.tag } onChange={ this.handleUpdate} />
                     <button>
                         {/* svg of search icon */}
                         <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">

@@ -2,14 +2,11 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import NotFound from './NotFound';
 import PhotoContainer from './PhotoContainer';
-import Photo from './Photo';
 
-const Router = () => {
+const Router = (props) => {
     return(
         <Switch>
-            <Route exact path='/' render={ () => <PhotoContainer /> } />
-            <Route exact path='/photo' render={ () => <Photo /> } />
-            <Route render={ () => <NotFound /> } />
+            <Route exact path='/' render={ () => <PhotoContainer photos={ props.photos } /> } />
         </Switch>
     );
 };
