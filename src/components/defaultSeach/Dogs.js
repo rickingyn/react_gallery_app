@@ -11,7 +11,9 @@ const PhotoContainer = () => {
             { ({ dogs }) => {
                 return(
                     <div className='photo-container'>
-                        <h2>Dogs</h2>
+                        <div className='title-container'>
+                            <h2 className='title'>Dogs</h2>
+                        </div>
                         <ul>
                            {/* map through cats context and render Photo Component */}
                             {dogs.map(photo => (

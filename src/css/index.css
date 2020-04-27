@@ -122,4 +122,52 @@ input {
     margin: 10px;
     width: 100px;
   }
+
+  /* Customized CSS */
+  /* add box shadow and hover effect */
+  .photo-thumbnail {
+    box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.75);
+    transition: 0.2s ease-in-out;
+  }
+
+  .photo-thumbnail:hover {
+    transform: scale(1.05);
+  }
+
+  /* cursor blinking animation for title */
+  .title-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .title {
+    font-family: monospace;
+    letter-spacing: 0.15em;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.15em solid #438bbd;
+    animation: 
+      typing 1s steps(20, start) forwards,
+      blinking-cursor 0.5s step-end infinite;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0
+    }
+    to {
+      width: 40%
+    }
+  }
+
+  @keyframes blinking-cursor {
+    0% {
+      border-color: transparent
+    }
+
+    50% {
+      border-color: #438bbd;
+    }
+  }
 }
