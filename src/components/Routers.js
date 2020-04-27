@@ -12,7 +12,7 @@ const Routers = (props) => {
             <Route exact path='/cats' render={ (routerProps) => <Cats {...routerProps} cats={ props.cats } updateResults={props.updateResults} /> } />
             <Route exact path='/dogs' render={ () => <Dogs dogs={ props.dogs } /> } />
             <Route exact path='/computers' render={ () => <Computers computers={ props.computers } /> } />
-            <Route path='/:id' render={ () => <PhotoContainer searchResults={ props.searchResults } /> } />
+            <Route path='/:id' render={ () => <PhotoContainer isLoading={ props.isLoading } result={ props.result } searchResults={ props.searchResults } /> } />
         </Switch>
     );
 };

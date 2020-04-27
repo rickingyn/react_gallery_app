@@ -1,7 +1,6 @@
 import React from 'react';
 import Photo from '../Photo';
 import '../../css/index.css';
-import SearchForm from '../SearchForm'
 
 const PhotoContainer = (props) => {
     return(

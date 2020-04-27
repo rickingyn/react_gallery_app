@@ -11,7 +11,9 @@ class App extends Component {
     cats: [],
     dogs: [],
     computers: [],
-    searchResults: []
+    searchResults: [],
+    isLoading: false,
+    result: false
   };
 
   // when DOM is rendered, call API with axios and update photos state to data received; 
@@ -39,7 +41,8 @@ class App extends Component {
       axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=computers&per_page=24&format=json&nojsoncallback=1`)
       .then( response => (
         this.setState({
-          computers: response.data.photos.photo
+          computers: response.data.photos.photo,
+          isLoading: false
         })
       ))
       .catch( error => console.log(error));
@@ -48,13 +51,30 @@ class App extends Component {
   // function to fetch new API with tag from search form and update photos state
   updateResults = (search) => {
     const URL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${search}&per_page=24&format=json&nojsoncallback=1`;
+    
+    // set isLoading state to true while retrieiving data; display loading text in render page
+    this.setState({
+      isLoading: true
+    });
+    
     axios.get(URL)
-      .then(response => (
-        this.setState({ 
-          searchResults: response.data.photos.photo
-        })
-      ))
-      .catch(error => console.log(error));
+      .then(response => {
+        // if images are returned, set state to be an array of images, else set result state to be false
+        // set isLoading to be false to display page with photos
+        if(response.data.photos.photo.length > 0) {
+          this.setState({ 
+            searchResults: response.data.photos.photo,
+            isLoading: false,
+            result: true
+          })
+        } else {
+          this.setState({
+            isLoading: false,
+            result: false
+          });
+        }
+      })
+      .catch( error => console.log(error) );
   };
 
   // render Nav and route of current URL
@@ -67,6 +87,8 @@ class App extends Component {
               cats={ this.state.cats } 
               dogs={ this.state.dogs }
               computers={ this.state.computers }
+              isLoading={ this.state.isLoading }
+              result={ this.state.result }
               searchResults={ this.state.searchResults }
               updateResults={ this.updateResults } 
             />
