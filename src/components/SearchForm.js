@@ -1,22 +1,30 @@
 import React, { Component } from 'react';
+// import withRouter to use history prop outside of Router
+import { withRouter } from 'react-router-dom';
 import '../css/index.css';
 
 class SearchForm extends Component {
     state = {
-        tag: ''
+        search: ''
     };
 
     // set state to current value of input field
     handleUpdate = (event) => {
         this.setState({
-            tag: event.target.value
+            search: event.target.value
         });
     };
 
-    // prevent page refresh and call function from parent, passing tag as parameter to update URL
+    // prevent page refresh and call function from parent, passing search as parameter to update URL
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.updatePhotos(this.state.tag);
+        this.props.updateResults(this.state.search);
+        this.setState({
+            search: ''
+        });
+
+        // redirect page to search with router's history prop
+        this.props.history.push(`${this.state.search}`);
     };
 
     render() {
@@ -24,7 +32,7 @@ class SearchForm extends Component {
             <div>
                 {/* Search field */}
                 <form className='search-form' onSubmit={ this.handleSubmit } >
-                    <input type='search' value={ this.state.tag } onChange={ this.handleUpdate} />
+                    <input type='search' value={ this.state.search } onChange={ this.handleUpdate} />
                     <button>
                         {/* svg of search icon */}
                         <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -38,4 +46,5 @@ class SearchForm extends Component {
     }
 }
 
-export default SearchForm;
+// wrap export with withRouter to use history prop outside of Router
+export default withRouter(SearchForm);

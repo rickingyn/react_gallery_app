@@ -9,7 +9,7 @@ class PhotoContainer extends Component {
             <div className='photo-container'>
                 <h2>Results</h2>
                 <ul>
-                    {this.props.photos.map(photo => (
+                    {this.props.searchResults.map(photo => (
                         <Photo key={ photo.id } photo={ photo } />
                     ))}
                 </ul>

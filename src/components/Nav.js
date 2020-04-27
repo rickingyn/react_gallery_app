@@ -1,13 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
-import SearchForm from './SearchForm';
+import { NavLink } from 'react-router-dom';
 import '../css/index.css';
 
 const Nav = (props) => {
     return(
         <div>
-            <SearchForm updatePhotos={ props.updatePhotos }/>
-
             {/* Nav Links */}
             <nav className='main-nav'>
                 <ul>
@@ -15,7 +12,6 @@ const Nav = (props) => {
                     <li><NavLink exact to='/dogs'>Dogs</NavLink></li>
                     <li><NavLink exact to='/computers'>Computers</NavLink></li>
                 </ul>
-
             </nav>
         </div>
     );
