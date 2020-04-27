@@ -2,6 +2,7 @@ import React, { Component, createContext } from 'react';
 import axios from 'axios';
 import apiKey from '../../config';
 
+// create Photo Context to pass props
 const PhotoContext = createContext();
 
 export class Provider extends Component {
