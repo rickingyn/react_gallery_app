@@ -4,6 +4,7 @@ import Cats from './defaultSeach/Cats';
 import Dogs from './defaultSeach/Dogs';
 import Computers from './defaultSeach/Computers';
 import PhotoContainer from './PhotoContainer';
+import ErrorPage from './ErrorPage';
 
 const Routers = () => {
     return(
@@ -14,7 +15,7 @@ const Routers = () => {
             <Route exact path='/computers' render={ () => <Computers /> } />
             <Route exact path='/:id' render={ () => <PhotoContainer /> } />
             {/* redirect back to home page if at any other URL */}
-            <Redirect to='/' />
+            <Route render={ () => <ErrorPage /> } />
         </Switch>
     );
 };
