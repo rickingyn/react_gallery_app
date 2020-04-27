@@ -10,6 +10,7 @@ export const Provider = (props) => {
   const [cats, setCats] = useState([]);
   const [dogs, setDogs] = useState([]);
   const [computers, setComputers] = useState([]);
+  const [searchTag, setSearchTag] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(false);
@@ -46,6 +47,7 @@ export const Provider = (props) => {
         // set isLoading to be false to display page with photos
         if(response.data.photos.photo.length > 0) {
           setSearchResults(response.data.photos.photo);
+          setSearchTag(search);
           setIsLoading(false);
           setResult(true);
         } else {
@@ -55,12 +57,13 @@ export const Provider = (props) => {
       })
       .catch( error => console.log(error) );
   };
-  
+ 
   return(
       <PhotoContext.Provider value={{
           cats: cats,
           dogs: dogs,
           computers: computers,
+          searchTag: searchTag,
           searchResults: searchResults,
           isLoading: isLoading,
           result: result,

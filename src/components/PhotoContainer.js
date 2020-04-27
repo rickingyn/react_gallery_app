@@ -8,7 +8,7 @@ const PhotoContainer = () => {
     return(
         <Consumer>
             {/* deconstruct cats prop from context */}
-            { ({ isLoading, result, searchResults }) => {
+            { ({ isLoading, result, searchResults, searchTag }) => {
                 return(
                     // check if data is loading and render
                         // if page is loaded, check if there are results;
@@ -18,7 +18,7 @@ const PhotoContainer = () => {
                             (result) ? (
                                 <div>
                                     <div className='photo-container'>
-                                        <h2>Results</h2>
+                                        <h2>{searchTag}</h2>
                                         <ul>
                                             {searchResults.map(photo => (
                                                 <Photo key={ photo.id } photo={ photo } />
