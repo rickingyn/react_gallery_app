@@ -20,7 +20,6 @@ const PhotoContainer = () => {
                                     <div className='photo-container'>
                                         <div className='title-container'>
                                             <h2 className='title'>{searchTag}</h2>
-
                                         </div>
                                         <ul>
                                             {searchResults.map(photo => (

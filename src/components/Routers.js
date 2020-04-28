@@ -10,6 +10,7 @@ const Routers = () => {
     return(
         <Switch>
             <Route exact path='/' render={ () => <Redirect to='/cats' /> } />
+            {/* pass route props (history) to Cats Component */}
             <Route exact path='/cats' render={ (routerProps) => <Cats {...routerProps} /> } />
             <Route exact path='/dogs' render={ () => <Dogs /> } />
             <Route exact path='/computers' render={ () => <Computers /> } />

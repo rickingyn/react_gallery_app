@@ -3,8 +3,16 @@ REACT GALLERY APP
 
 Project uses React library to create an image gallery app. This application uses Axios to fetch data from Flickr API to display images.
 
+* Note: To fetch data from Flickr's API, you need a personal API key that is stored in to config file. File should look like this:
+    const apiKey = '';
+    export default apiKey;
+
+    * config file is stored in the src folder 
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
