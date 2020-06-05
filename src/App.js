@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Provider } from './components/context';
 import Routers from './components/Routers';
 import Nav from './components/Nav';
@@ -9,7 +9,7 @@ import './css/index.css';
 const App = () => {
   // render SearchForm, Nav and Routers Component
   return( 
-    <BrowserRouter>
+    <HashRouter>
       <div className='container'>
         <Provider>
           <SearchForm />
@@ -17,7 +17,7 @@ const App = () => {
           <Routers />
         </Provider>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
